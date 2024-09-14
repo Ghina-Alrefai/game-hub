@@ -1,4 +1,4 @@
-import { Grid, GridItem, Box, Show } from "@chakra-ui/react"; // Import Box for conditional rendering
+import { Grid, GridItem,  Show } from "@chakra-ui/react"; // Import Box for conditional rendering
 //import { useMediaQuery } from '@chakra-ui/react'; // Import media query hook
 import { NavBar } from "./components/NavBar";
 
