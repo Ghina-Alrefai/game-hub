@@ -1,6 +1,7 @@
 import { Grid, GridItem,  Show } from "@chakra-ui/react"; // Import Box for conditional rendering
 //import { useMediaQuery } from '@chakra-ui/react'; // Import media query hook
 import { NavBar } from "./components/NavBar";
+import ProductList from "./components/ProductList"; 
 
 function App() {
   
@@ -13,10 +14,11 @@ function App() {
         <NavBar />
       </GridItem>
       <Show above="lg">
-      <GridItem area="asid" bg="gold">asid</GridItem>
+      <GridItem area="asid" >asid</GridItem>
       </Show>
-      <GridItem area="main" bg="blue">main</GridItem>
-  
+      <GridItem area="main" >
+        <ProductList />
+      </GridItem>
    
     </Grid>
   );
