@@ -2,12 +2,23 @@
 import { useEffect, useState } from 'react';
 import apiClient from '../services/api_client';
 
+
+export interface Platform{
+  id : number
+  name: string
+  slug: string
+}
 export interface Product {
   id: number;
-  title: string;
-  image:string;
+  name: string;
+  background_image:string;
+  parent_platforms:{platform : Platform}[];
+  metacritic:number;
 }
-
+interface FetchProduct{
+  count: number;
+  results: Product[];
+}
 export const useFetchProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -15,9 +26,10 @@ export const useFetchProducts = () => {
 
   useEffect(() => {
     apiClient
-      .get('/products')
+      .get('/games')
       .then((res) => {
-        setProducts(res.data);
+        console.log(res.data.results); // Check the structure of the data here
+        setProducts(res.data.results);
         setLoading(false);
       })
       .catch((err) => {
@@ -25,6 +37,6 @@ export const useFetchProducts = () => {
         setLoading(false);
       });
   }, []);
-
+  
   return { products, error, loading };
 };
