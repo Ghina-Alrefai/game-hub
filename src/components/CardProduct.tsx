@@ -3,14 +3,15 @@ import { Product } from '../services/useFetchProducts';
 import { Card, CardBody, Heading, HStack, Image, Text } from '@chakra-ui/react';
 import PlatformIconList from './PlatformIconList';
 import CriticScour from './CriticScour';
+import getCroppedUrl from '../services/imgUrl';
 
 interface Props{
     product : Product;
 }
 export const CardProduct = ({product}:Props) => {
   return (
-   <Card  borderRadius={40}> 
-    <Image src={product.background_image}   
+   <Card width="300px" borderRadius={40}> 
+    <Image src= { getCroppedUrl( product.background_image)}   
     objectFit='cover'  borderRadius={20} overflow='hidden'></Image>
     <CardBody >
         <Heading fontSize='2l'>
