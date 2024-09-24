@@ -2,6 +2,7 @@ import { Grid, GridItem,  Show } from "@chakra-ui/react"; // Import Box for cond
 //import { useMediaQuery } from '@chakra-ui/react'; // Import media query hook
 import { NavBar } from "./components/NavBar";
 import ProductList from "./components/ProductList"; 
+import GenresList from "./components/GenresList";
 
 function App() {
   
@@ -14,7 +15,9 @@ function App() {
         <NavBar />
       </GridItem>
       <Show above="lg">
-      <GridItem area="asid" >asid</GridItem>
+      <GridItem area="asid" >
+        <GenresList/>
+      </GridItem>
       </Show>
       <GridItem area="main" >
         <ProductList />

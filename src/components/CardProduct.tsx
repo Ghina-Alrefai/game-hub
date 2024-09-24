@@ -1,5 +1,5 @@
 
-import { Product } from '../services/useFetchProducts';
+import { Product } from '../hooks/useFetchProducts';
 import { Card, CardBody, Heading, HStack, Image, Text } from '@chakra-ui/react';
 import PlatformIconList from './PlatformIconList';
 import CriticScour from './CriticScour';
