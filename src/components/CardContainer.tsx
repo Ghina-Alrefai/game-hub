@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import React, { ReactNode } from 'react'
+import  { ReactNode } from 'react'
 
 
 
@@ -8,7 +8,7 @@ children:ReactNode
 }
 export const CardContainer = ({children}: Props) => {
   return (
-    <Box>
+    <Box   borderRadius={20} overflow='hidden'>
        {children}
     </Box>
   )
