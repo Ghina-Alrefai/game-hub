@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import apiClient from '../services/api_client';
 import useData from './useData';
 import { Genre } from './useGenres';
+import { GameQuery } from '../App';
 
 
 export interface Platform{
@@ -21,14 +22,14 @@ interface FetchGame{
   count: number;
   results: Game[];
 }
-export const useFetchGames = (SelectedGenre:Genre | null ,SelectedPlatform:Platform | null) => 
-  useData<Game>('/games' , {
+export const useGames = (gameQuery:GameQuery)=> 
+  useData<Game>('/games' ,
+     {
     params: {
-      genres: SelectedGenre?.id,
-      platforms: SelectedPlatform?.id
-    } },
-    [
-      SelectedGenre?.id,
-      SelectedPlatform?.id
-    ]
+      genres: gameQuery.genre?.id,
+      platforms: gameQuery.platform?.id
+    } 
+  },
+[  gameQuery.genre?.id,
+   gameQuery.platform?.id]
   );

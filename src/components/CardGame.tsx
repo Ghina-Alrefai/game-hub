@@ -1,5 +1,5 @@
 
-import { Game } from '../hooks/useFetchGame';
+import { Game } from '../hooks/useGame';
 import { Card, CardBody, Heading, HStack, Image, Text } from '@chakra-ui/react';
 import PlatformIconList from './PlatformIconList';
 import CriticScour from './CriticScour';
