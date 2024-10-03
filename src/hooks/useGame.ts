@@ -1,8 +1,7 @@
 // src/hooks/useFetchGames.ts
-import { useEffect, useState } from 'react';
-import apiClient from '../services/api_client';
+
 import useData from './useData';
-import { Genre } from './useGenres';
+
 import { GameQuery } from '../App';
 
 
@@ -19,10 +18,7 @@ export interface Game {
   metacritic:number;
   rating_top:number;
 }
-interface FetchGame{
-  count: number;
-  results: Game[];
-}
+
 export const useGames = (gameQuery:GameQuery)=> 
   useData<Game>('/games' ,
      {

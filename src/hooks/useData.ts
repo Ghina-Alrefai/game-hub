@@ -1,31 +1,35 @@
-// src/hooks/useFetchGames.ts
-import { useEffect, useState } from 'react';
-import apiClient from '../services/api_client';
-import { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig, CanceledError } from "axios";
+import { useEffect, useState } from "react";
+import apiClient from "../services/api_client";
 
 interface FetchResponse<T> {
   count: number;
   results: T[];
 }
 
-export const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, p0?: (number | undefined)[]) => {
+const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?: any[]) => {
   const [data, setData] = useState<T[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
+
+    setLoading(true);
     apiClient
-      .get<FetchResponse<T>>(endpoint, requestConfig) // Correctly passing requestConfig
+      .get<FetchResponse<T>>(endpoint, { signal: controller.signal, ...requestConfig })
       .then((res) => {
-        console.log(res.data.results);
         setData(res.data.results);
         setLoading(false);
       })
       .catch((err) => {
-        setError(err.message);
+        if (err instanceof CanceledError) return;
+        setError(err.message)
         setLoading(false);
       });
-  }, [endpoint, requestConfig]); // Add dependencies for useEffect
+
+    return () => controller.abort();
+  }, deps ? [...deps] : []);
 
   return { data, error, loading };
 };

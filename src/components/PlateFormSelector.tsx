@@ -1,8 +1,8 @@
-import { Button, Icon, List, ListItem, Menu, MenuButton, MenuItem, MenuList ,Text} from '@chakra-ui/react'
-import { Game, Platform } from '../hooks/useGame'
-import useData from '../hooks/useData';
+import { Button,  Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import {  Platform } from '../hooks/useGame'
+
 import { BsChevronBarDown  } from 'react-icons/bs';
-import { IconBase } from 'react-icons';
+
 import {usePlatForme } from  '../hooks/usePlatForme'
 
 interface Props {

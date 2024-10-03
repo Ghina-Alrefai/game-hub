@@ -1,6 +1,6 @@
 import { Box, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import { NavBar } from "./components/NavBar";
-import GameList, { GameGrid } from "./components/GameGrid";
+import { GameGrid } from "./components/GameGrid";
 import GenresList from "./components/GenresList";
 import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
@@ -26,19 +26,8 @@ function App() {
     rating_top: 0
   });
 
-  const handleGenreSelect = (genre: Genre) => {
-    setGameQuery((prev) => ({
-      ...prev,
-      genre,
-    }));
-  };
 
-  const handlePlatformSelect = (platform: Platform) => {
-    setGameQuery((prev) => ({
-      ...prev,
-      platform,
-    }));
-  };
+ 
 
   return (
     <Grid

@@ -1,6 +1,5 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
-import { label } from 'framer-motion/client'
-import React from 'react'
+
 import { BsChevronBarDown } from 'react-icons/bs'
 
 
