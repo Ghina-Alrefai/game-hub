@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import apiClient from '../services/api_client';
 import useData from './useData';
-
+import genres from '../data/genres';
 
 
 export interface Genre{
@@ -15,4 +15,4 @@ interface FetchGenresRespons{
     results: Genre[];
 }
 
-export const useGenres = () => useData<Genre>('/genres');
+export const useGenres = () => ({data: genres , loading : false , error : null});
