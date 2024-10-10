@@ -10,7 +10,7 @@ import { FetchResponse } from './useData';
 
 
 const api_client = new ApiClient<Platform>('/platforms/lists/parents');
-interface Platform{
+export interface Platform{
     id:number
     name:string
     slug:string 

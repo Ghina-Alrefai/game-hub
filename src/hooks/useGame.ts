@@ -3,15 +3,11 @@
 import { FetchResponse } from './useData';
 import { GameQuery } from '../App';
 import { ApiClient } from '../services/api_client';
-import { useQuery } from '@tanstack/react-query'; 
-
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query'; 
+import { Platform } from './usePlatForme';
 const api_client = new ApiClient<Game>('/games');
 
-export interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
+
 
 export interface Game {
   id: number;
@@ -23,9 +19,10 @@ export interface Game {
 }
 
 export const useGames = (gameQuery: GameQuery) =>
-  useQuery<FetchResponse<Game>, Error>({
+  //number 1 to inf query
+  useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ['games', gameQuery],  
-    queryFn: () =>
+     queryFn: ({pageParam = 1}) =>
       api_client.getAll({
         params: {
           genres: gameQuery.genre?.id,
@@ -33,6 +30,11 @@ export const useGames = (gameQuery: GameQuery) =>
           ordering: gameQuery.sortOrder,
           search: gameQuery.searchText,
           rating_top: gameQuery.rating_top, 
+          page: pageParam
         },
       }),
+      getNextPageParam: (lastPage, allPages ) => {
+        // Calculate the next page number
+        return lastPage.next  ? allPages.length + 1 : undefined;
+      },
   });
