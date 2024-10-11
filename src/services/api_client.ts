@@ -20,13 +20,13 @@ export class ApiClient<T>{
  }
 
 
+ 
  getAll = (config : AxiosRequestConfig) =>
- {
-     return axiosInstance.
-     get<FetchResponse<T>>(this.endPoint , config)
-     .then(res => res.data)
- }
-
+  {
+      return axiosInstance.
+      get<FetchResponse<T>>(this.endPoint , config)
+      .then(res => res.data)
+  }
 
  
  

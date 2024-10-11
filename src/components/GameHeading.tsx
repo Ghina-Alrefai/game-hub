@@ -1,6 +1,8 @@
 
 import { GameQuery } from '../App'
 import { Heading } from '@chakra-ui/react';
+import useGenres from '../hooks/useGenres';
+import { data } from 'framer-motion/client';
 
 
 
@@ -9,6 +11,8 @@ interface Props{
  gameQuery: GameQuery;
 }
 export const GameHeading = ({gameQuery} :Props) => {
+
+
 
     const hading = `${gameQuery.platform?.name || ""} ${gameQuery.genre?.name|| "" } Games`;
 

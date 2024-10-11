@@ -1,5 +1,5 @@
 import { useGames } from '../hooks/useGame';
-import { Box, Button, SimpleGrid } from '@chakra-ui/react';
+import { Box, Button, SimpleGrid, Spinner } from '@chakra-ui/react';
 import { CardGame } from './CardGame';
 import { SkeletonCard } from './SkeletonCard';
 import { CardContainer } from './CardContainer';
@@ -17,6 +17,8 @@ export const GameGrid = ({ gameQuery }: Props) => {
 
   if (error) return <p>{error.message}</p>;
 
+  if(isLoading) return<Spinner>louding...</Spinner>
+  
   if (data == null) return <p>No games available.</p>;
 
   return (

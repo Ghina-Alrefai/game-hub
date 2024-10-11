@@ -6,6 +6,7 @@ import { ApiClient } from '../services/api_client';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'; 
 import { Platform } from './usePlatForme';
 const api_client = new ApiClient<Game>('/games');
+import ms from 'ms'
 
 
 
@@ -37,4 +38,5 @@ export const useGames = (gameQuery: GameQuery) =>
         // Calculate the next page number
         return lastPage.next  ? allPages.length + 1 : undefined;
       },
+      staleTime: ms('24h')
   });
