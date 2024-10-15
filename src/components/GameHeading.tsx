@@ -1,22 +1,23 @@
+import { Heading } from "@chakra-ui/react";
+import {useGener } from "../hooks/useGener"; // تعديل اسم الاستيراد
+import useStoreGame from "../store";
+import { usePlatForme } from "../hooks/usePlatForme";
 
-import { GameQuery } from '../App'
-import { Heading } from '@chakra-ui/react';
-import useGenres from '../hooks/useGenres';
-import { data } from 'framer-motion/client';
+export const GameHeading = () => {
+  // الحصول على platformId و genreId من store
+  const platformId = useStoreGame((s) => s.gameQuery.platformId);
+  const genreId = useStoreGame((s) => s.gameQuery.genreId);
 
+  // استخدام useGenre و usePlatForme للحصول على البيانات
+  const genre = useGener(genreId);
+  const platform = usePlatForme(platformId);
 
-
-
-interface Props{
- gameQuery: GameQuery;
-}
-export const GameHeading = ({gameQuery} :Props) => {
-
-
-
-    const hading = `${gameQuery.platform?.name || ""} ${gameQuery.genre?.name|| "" } Games`;
+  // تكوين الجملة للعنوان
+  const heading = `${platform?.name || ""} ${genre?.name || ""} Games`;
 
   return (
-    <Heading as='h1' fontSize='5xl' marginY={5} marginX={20}>{hading}</Heading>
-  )
-}
+    <Heading as="h1" fontSize="5xl" marginY={5} marginX={20}>
+      {heading}
+    </Heading>
+  );
+};

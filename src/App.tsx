@@ -2,33 +2,13 @@ import { Box, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import { NavBar } from "./components/NavBar";
 import { GameGrid } from "./components/GameGrid";
 import GenresList from "./components/GenresList";
-import { useState } from "react";
-import { Genre } from "./hooks/useGenres";
+
 import { PlateFormSelector } from "./components/PlateFormSelector";
-import { Platform } from "./hooks/usePlatForme";
+
 import { SortSelector } from "./components/SortSelector";
 import { GameHeading } from "./components/GameHeading";
 
-export interface GameQuery {
-  genre: Genre | null;
-  platform: Platform | null;
-  sortOrder : string
-  searchText: string 
-  rating_top:number
-}
-
 function App() {
-  const [gameQuery, setGameQuery] = useState<GameQuery>({
-    genre: null,
-    platform: null,
-    sortOrder:"",
-    searchText:"",
-    rating_top: 0
-  });
-
-
- 
-
   return (
     <Grid
       templateAreas={{
@@ -41,32 +21,28 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar OnSearch={(searchText)=> setGameQuery({...gameQuery , searchText})}/>
+        <NavBar />
       </GridItem>
 
       <Show above="lg">
         <GridItem area="asid" paddingX={5}>
-          <GenresList
-            SelectedGenre={gameQuery.genre}
-            onSelectGenre={(genre)=> setGameQuery({...gameQuery,genre} )}
-          />
+          <GenresList />
         </GridItem>
       </Show>
 
       <GridItem area="main">
         <Box paddingLeft={2}>
-       <GameHeading gameQuery={gameQuery}/>
-        <HStack spacing={5} paddingLeft={76} marginBottom={2}>
-        <PlateFormSelector
-          SelectedPlatform={gameQuery.platform}
-          onSelectPlatform={(platform)=> setGameQuery({...gameQuery,platform} )}
-        />
-         <SortSelector  selectedSortOrder={gameQuery.sortOrder} OnSelectSortOrder={(sortOrder) => setGameQuery({ ...gameQuery, sortOrder })}/>//comlate this line
-        </HStack>
-       
-        <GameGrid
-         gameQuery={gameQuery}
-        />
+          <GameHeading />
+          <HStack spacing={5} paddingLeft={76} marginBottom={2}>
+            <PlateFormSelector
+            
+            />
+            <SortSelector
+            />
+            //comlate this line
+          </HStack>
+
+          <GameGrid  />
         </Box>
       </GridItem>
     </Grid>

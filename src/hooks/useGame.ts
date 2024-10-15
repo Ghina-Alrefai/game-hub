@@ -1,12 +1,12 @@
 // src/hooks/useFetchGames.ts
 
 import { FetchResponse } from './useData';
-import { GameQuery } from '../App';
 import { ApiClient } from '../services/api_client';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query'; 
-import { Platform } from './usePlatForme';
+import { useInfiniteQuery } from '@tanstack/react-query'; 
+import { Platform } from './usePlatForms';
 const api_client = new ApiClient<Game>('/games');
 import ms from 'ms'
+import useStoreGame from '../store';
 
 
 
@@ -19,18 +19,19 @@ export interface Game {
   rating_top: number;
 }
 
-export const useGames = (gameQuery: GameQuery) =>
-  //number 1 to inf query
-  useInfiniteQuery<FetchResponse<Game>, Error>({
+export const useGames = () =>{
+  
+  const gameQuery = useStoreGame(s=> s.gameQuery);
+
+  return useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ['games', gameQuery],  
      queryFn: ({pageParam = 1}) =>
       api_client.getAll({
         params: {
-          genres: gameQuery.genre?.id,
-          platforms: gameQuery.platform?.id,
+          genres: gameQuery.genreId,
+          platforms: gameQuery.platformId,
           ordering: gameQuery.sortOrder,
           search: gameQuery.searchText,
-          rating_top: gameQuery.rating_top, 
           page: pageParam
         },
       }),
@@ -40,3 +41,4 @@ export const useGames = (gameQuery: GameQuery) =>
       },
       staleTime: ms('24h')
   });
+}
