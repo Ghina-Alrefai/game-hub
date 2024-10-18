@@ -4,7 +4,7 @@ import useStoreGame from "../store";
 import { usePlatForme } from "../hooks/usePlatForme";
 
 export const GameHeading = () => {
-  // الحصول على platformId و genreId من store
+
   const platformId = useStoreGame((s) => s.gameQuery.platformId);
   const genreId = useStoreGame((s) => s.gameQuery.genreId);
 

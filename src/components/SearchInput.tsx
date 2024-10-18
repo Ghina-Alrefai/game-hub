@@ -11,7 +11,7 @@ export const SearchInput = () => {
     
     return (
         <form style={{ width: '100%' }} onSubmit={(event) => {
-            event.preventDefault()
+            event.preventDefault();
             if (ref.current) {
                 setSearchText(ref.current.value) 
             }

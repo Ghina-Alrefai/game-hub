@@ -13,6 +13,7 @@ interface Props{
 export const CardGame = ({game}:Props) => {
   return (
     
+
    <Card > 
     <Image src= { getCroppedUrl( game.background_image)}   
     objectFit='cover'  borderRadius={20} overflow='hidden'></Image>
