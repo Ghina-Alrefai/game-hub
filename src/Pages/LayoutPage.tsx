@@ -1,14 +1,18 @@
+import { Box, Grid, GridItem } from '@chakra-ui/react';
+import { NavBar } from '../components/NavBar';
+import { Outlet } from 'react-router-dom';
 
-import { GridItem } from '@chakra-ui/react'
-import React from 'react'
-import { NavBar } from '../components/NavBar'
-import { Outlet } from 'react-router-dom'
+// ... other imports
 
 export const LayoutPage = () => {
   return (
-   <>
-    <NavBar />
-    <Outlet/>
-  </>
-  )
-}
+    <>
+      <NavBar />
+      <Box padding={5}>
+          <Outlet />
+      </Box>
+    
+    </>
+  );
+};
+

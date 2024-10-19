@@ -28,6 +28,12 @@ export class ApiClient<T>{
       .then(res => res.data)
   }
 
+  getGameDetails = (id : string | number) =>
+  {
+    return axiosInstance.
+    get<T>(this.endPoint + '/' + id ).then(res => res.data)
+  }
+
  
  
 }
