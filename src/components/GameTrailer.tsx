@@ -15,7 +15,7 @@ export const GameTrailer = ({ gameId }: Props) => {
 
   if(!trailer) return null;
 
-  return (
+  return trailer ? (
 
       <Box maxWidth="100%"> 
         <video
@@ -26,6 +26,5 @@ export const GameTrailer = ({ gameId }: Props) => {
         >
         </video>
       </Box>
-
-  );
+  ): 'No trailer found'
 }
