@@ -1,4 +1,6 @@
+import { Genre } from "./Genre";
 import { Platform } from "./Platform";
+import Publisher from "./Publisher";
 
 
 
@@ -12,4 +14,6 @@ export interface Game {
   description_raw: string;
   metacritic: number;
   rating_top: number;
+  publishers:Publisher[];
+  genres: Genre[]
 }
