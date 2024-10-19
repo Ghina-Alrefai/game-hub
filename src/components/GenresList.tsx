@@ -1,26 +1,35 @@
-import useGenres, { Genre } from '../hooks/useGenres';
-import { HStack, List, ListItem, Image, Button,  Heading, Spinner } from '@chakra-ui/react';
-import getCroppedUrl from '../services/imgUrl';
-import useStoreGame from '../store';
-
-
+import useGenres from "../hooks/useGenres";
+import { Genre } from "../entites/Genre";
+import {
+  HStack,
+  List,
+  ListItem,
+  Image,
+  Button,
+  Heading,
+  Spinner,
+} from "@chakra-ui/react";
+import getCroppedUrl from "../services/imgUrl";
+import useStoreGame from "../store";
 
 export const GenresList = () => {
-  const {data , error , isLoading} = useGenres(); 
-  const SelectedGenreId = useStoreGame(s=> s.gameQuery.genreId)
-  const  setGenreId = useStoreGame(s=> s.setGenreId);
-  
+  const { data, error, isLoading } = useGenres();
+  const SelectedGenreId = useStoreGame((s) => s.gameQuery.genreId);
+  const setGenreId = useStoreGame((s) => s.setGenreId);
+
   if (error) return <p>{error.message}</p>;
 
-  if(isLoading) return <Spinner/>
-  
+  if (isLoading) return <Spinner />;
+
   return (
-   <>
-      <Heading paddingY='5px' as='h1' fontSize='2xl'>Genres List</Heading>
+    <>
+      <Heading paddingY="5px" as="h1" fontSize="2xl">
+        Genres List
+      </Heading>
       <List>
-        {data?.results.map((genre : Genre) => (
-          <ListItem key={genre.id} paddingY='5px'>
-            <HStack padding='5px'>
+        {data?.results.map((genre: Genre) => (
+          <ListItem key={genre.id} paddingY="5px">
+            <HStack padding="5px">
               <Image
                 boxSize="32px"
                 borderRadius={8}
@@ -29,10 +38,10 @@ export const GenresList = () => {
 
               <HStack>
                 <Button
-                  fontWeight={genre.id ===  SelectedGenreId ? 'bold' : 'normal'}
+                  fontWeight={genre.id === SelectedGenreId ? "bold" : "normal"}
                   onClick={() => setGenreId(genre.id)}
-                  fontSize='lg'
-                  variant='link'
+                  fontSize="lg"
+                  variant="link"
                 >
                   {genre.name}
                 </Button>
@@ -41,7 +50,7 @@ export const GenresList = () => {
           </ListItem>
         ))}
       </List>
-  </>
+    </>
   );
 };
 

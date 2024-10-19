@@ -4,19 +4,13 @@ import { useQuery } from '@tanstack/react-query';
 import { ApiClient } from '../services/api_client';
 import platforms from '../data/platforms'
 import ms from 'ms'
+import { Platform } from '../entites/Platform';
 
 
 
 
 
 const api_client = new ApiClient<Platform>('/platforms/lists/parents');
-export interface Platform{
-    id:number
-    name:string
-    slug:string 
-}
-
-
 interface FetchResponse<T> {
     count: number;
     results: T[];

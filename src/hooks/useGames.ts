@@ -3,23 +3,12 @@
 import { FetchResponse } from './useData';
 import { ApiClient } from '../services/api_client';
 import { useInfiniteQuery } from '@tanstack/react-query'; 
-import { Platform } from './usePlatForms';
 const api_client = new ApiClient<Game>('/games');
 import ms from 'ms'
 import useStoreGame from '../store';
+import { Game } from '../entites/Game';
 
 
-
-export interface Game {
-  id: number;
-  name: string;
-  slug:string;
-  background_image: string;
-  parent_platforms: { platform: Platform }[];
-  description_raw: string;
-  metacritic: number;
-  rating_top: number;
-}
 
 export const useGames = () =>{
   
