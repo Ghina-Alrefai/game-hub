@@ -5,6 +5,7 @@ import {ExpendableText} from '../components/ExpendableText'; // Ensure this impo
 import DefinitionElement from '../components/defintionItem'; // Correct import
 import CriticScour from '../components/CriticScour';
 import { GameAttributes } from '../components/GameAttributes';
+import { GameTrailer } from '../components/GameTrailer';
 
 export const GameDetailPage = () => {
   const { slug } = useParams();
@@ -20,6 +21,7 @@ export const GameDetailPage = () => {
       <Heading>{data.name}</Heading>
       <ExpendableText>{data.description_raw}</ExpendableText>
       <GameAttributes game={data}/>
+      <GameTrailer gameId={data.id}/>
     </>
   );
 };
