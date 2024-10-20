@@ -1,8 +1,14 @@
 import { useParams } from 'react-router-dom';
 import useGameDetail from '../hooks/useGameDetail';
-import { Heading, SimpleGrid, Spinner, Text } from '@chakra-ui/react';
-import {ExpendableText} from '../components/ExpendableText'; // Ensure this import is correct
-
+import { 
+  GridItem, 
+  Heading, 
+  SimpleGrid, 
+  Spinner, 
+  Flex, // Add Flex for layout
+  Box // Add Box for layout
+} from '@chakra-ui/react';
+import {ExpendableText} from '../components/ExpendableText'; 
 import { GameAttributes } from '../components/GameAttributes';
 import { GameTrailer } from '../components/GameTrailer';
 import { ScreenshotsGrid } from '../components/ScreenshotsGrid';
@@ -17,12 +23,22 @@ export const GameDetailPage = () => {
   if (!data) throw error;
 
   return (
-    <>
-      <Heading>{data.name}</Heading>
-      <ExpendableText>{data.description_raw}</ExpendableText>
-      <GameAttributes game={data}/>
-      <GameTrailer gameId={data.id}/>
-      <ScreenshotsGrid gameId={data.id}/>
-    </>
+    <Flex direction="column" p={5}> 
+      <Heading size="lg" mb={5}>{data.name}</Heading>
+
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
+        <GridItem>
+          <ExpendableText>{data.description_raw}</ExpendableText>
+          <GameAttributes game={data}/>
+        </GridItem>
+
+        <GridItem>
+          <Box mb={5}> 
+            <GameTrailer gameId={data.id}/>
+          </Box>
+          <ScreenshotsGrid gameId={data.id}/>
+        </GridItem>
+      </SimpleGrid>
+    </Flex>
   );
 };

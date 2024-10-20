@@ -1,7 +1,7 @@
 
 import { Game } from '../entites/Game';
 import CriticScour from './CriticScour';
-import DefinitionElement from './defintionItem';
+import DefinitionElement from './DefintionItem';
 import { SimpleGrid } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/react';
 
